@@ -1,21 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import fifa_logo from '../img/fifa_logo.JPG';
+// import fifa_logo from '../img/fifa_logo.JPG';
 import { MdSearch } from 'react-icons/md';
 
 const SearchContainer = styled.div`
     width: 500px;
-    height: 400px;
+    height: 200px;
     margin: 0 auto;
-    padding: 60px;
-`;
-
-const Logo = styled.img`
-    width: 80%;
-    display: block;
-    margin: 0 auto;
-    padding: 10px;
-    cursor: pointer;
+    padding: 30px;
 `;
 
 const Input = styled.input`
@@ -48,7 +40,6 @@ const InputContainer = styled.div`
 function SearchBar() {
     return (
         <SearchContainer>
-            <Logo src={fifa_logo}></Logo>
             <InputContainer>
                 <Input type='text' placeholder='구단주명을 입력해주세요.' autoFocus></Input>
                 <Button><MdSearch /></Button>

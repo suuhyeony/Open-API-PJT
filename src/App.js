@@ -1,6 +1,7 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import SearchBar from './components/SearchBar';
+import Home from './routes/Home';
+
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -9,12 +10,14 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+
+
 function App() {
   return (
     <>
       <GlobalStyle />
       <div>
-        <SearchBar />
+        <Home />
       </div>
     </>
   );
