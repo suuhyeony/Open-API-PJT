@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-// import fifa_logo from '../img/fifa_logo.JPG';
+import { getUser, useUserDispatch, useUserState } from '../modules/UserContext';
+import SearchPreview from './SearchPreview';
 import { MdSearch } from 'react-icons/md';
 
 const SearchContainer = styled.div`
@@ -12,8 +14,6 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
     padding: 12px;
-    /* border-radius: 4px; */
-    /* border: 1px solid #dee2e6; */
     width: 100%;
     outline: none;
     border: none;
@@ -38,12 +38,30 @@ const InputContainer = styled.div`
 `;
 
 function SearchBar() {
+    const [text, setText] = useState('');
+    // const state = useUserState();
+    const dispatch = useUserDispatch();
+    const history = useHistory();
+    
+    const onChange = async (e) => {
+        await setText(e.target.value);
+        getUser(dispatch, e.target.value)
+    };
+
+    const handleSearch = (e) => {
+        if (e.key === 'Enter' || e.type === 'click') {
+            // history.push('/about_user');
+            setText('');
+        };
+    }
+
     return (
         <SearchContainer>
             <InputContainer>
-                <Input type='text' placeholder='구단주명을 입력해주세요.' autoFocus></Input>
-                <Button><MdSearch /></Button>
+                <Input type='text' placeholder='구단주명을 입력해주세요.' value={text} onChange={onChange} autoFocus onKeyUp={handleSearch} />
+                <Button onClick={handleSearch}><MdSearch /></Button>
             </InputContainer>
+            <SearchPreview></SearchPreview>
         </SearchContainer>
     );
 }
