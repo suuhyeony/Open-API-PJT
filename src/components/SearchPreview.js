@@ -1,21 +1,32 @@
 import React from 'react';
+import styled from 'styled-components';
 import { getUser, useUserDispatch, useUserState } from '../modules/UserContext';
+
+const PreviewContainer = styled.div`
+    width: 500px;
+    height: 100px;
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: gray;
+`;
 
 function SearchPreview() {
     const state = useUserState();
     const { data: user, loading, error } = state.user;
     // const { user } = match.params;
 
-    if (loading) return <div>loading</div>
-    if (error) return <div>해당 유저가 없숴요</div>
-    if (!user) return <></>
+    if (loading) return <PreviewContainer>loading</PreviewContainer>;
+    if (error) return <PreviewContainer>해당 구단주님이 없네요!</PreviewContainer>;
+    if (!user) return null;
 
     return (
-        <div>
-            <p>{user.nickname}</p>
-            <p>{user.level}</p>
-            <p>{user.accessId}</p>
-        </div>
+        <PreviewContainer>
+            <p><b>닉네임:</b> {user.nickname}</p>
+            <p><b>Lv:</b> {user.level}</p>
+            {/* <p>accessId: {user.accessId}</p> */}
+        </PreviewContainer>
     );
 }
 

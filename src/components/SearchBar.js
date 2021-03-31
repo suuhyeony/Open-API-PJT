@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { getUser, useUserDispatch, useUserState } from '../modules/UserContext';
+import { getUser, getUserId, useUserDispatch, useUserState } from '../modules/UserContext';
 import SearchPreview from './SearchPreview';
 import { MdSearch } from 'react-icons/md';
 
-const SearchContainer = styled.div`
-    width: 500px;
-    height: 200px;
-    margin: 0 auto;
-    padding: 30px;
-`;
 
 const Input = styled.input`
     padding: 12px;
@@ -34,35 +28,43 @@ const Button = styled.button`
 
 const InputContainer = styled.div`
     display: flex;
+    justify-content: space-around;
     border-bottom: 2px solid #dee2e6;
 `;
 
 function SearchBar() {
     const [text, setText] = useState('');
-    // const state = useUserState();
+    const state = useUserState();
     const dispatch = useUserDispatch();
     const history = useHistory();
     
+    const { data: user } = state.user;
+
     const onChange = async (e) => {
         await setText(e.target.value);
-        getUser(dispatch, e.target.value)
+        getUser(dispatch, e.target.value);
     };
 
     const handleSearch = (e) => {
         if (e.key === 'Enter' || e.type === 'click') {
-            // history.push('/about_user');
+            // getUserId(dispatch, user.accessId);
+            // console.log(state);
+            history.push({
+                pathname: '/about_user',
+                state: {id: user.accessId}
+            });
             setText('');
         };
     }
-
+    // console.log(state);
     return (
-        <SearchContainer>
+        <>
             <InputContainer>
                 <Input type='text' placeholder='구단주명을 입력해주세요.' value={text} onChange={onChange} autoFocus onKeyUp={handleSearch} />
                 <Button onClick={handleSearch}><MdSearch /></Button>
             </InputContainer>
-            <SearchPreview></SearchPreview>
-        </SearchContainer>
+            {text ? <SearchPreview></SearchPreview> : null}
+        </>
     );
 }
 

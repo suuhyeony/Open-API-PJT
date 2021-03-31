@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
-import SearchBar from '../components/SearchBar';
 import fifa_logo from '../img/fifa_logo.JPG';
+import SearchBar from '../components/SearchBar';
+import styled from 'styled-components';
 
-const Logo = styled.img`
+const LogoHome = styled.img`
     width: 400px;
     display: block;
     margin: 0 auto;
@@ -12,11 +12,20 @@ const Logo = styled.img`
     cursor: pointer;
 `;
 
+const SearchContainer = styled.div`
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+    padding: 30px;
+`;
+
 function Home() {
     return (
         <div>
-            <Logo src={fifa_logo}></Logo>
-            <SearchBar />
+            <LogoHome src={fifa_logo}></LogoHome>
+            <SearchContainer>
+                <SearchBar />
+            </SearchContainer>
         </div>
     );
 }
