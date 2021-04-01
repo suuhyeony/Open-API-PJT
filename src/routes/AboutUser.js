@@ -5,6 +5,8 @@ import SearchBar from '../components/SearchBar';
 import styled from 'styled-components';
 import UserInfo from '../components/UserInfo';
 import UserTopLevel from '../components/UserTopLevel';
+import RecentMatch from '../components/RecentMatch';
+import Footer from '../components/Footer';
 
 const HeaderContainer = styled.div`
     display: flex;
@@ -19,6 +21,19 @@ const InputContainer = styled.div`
     padding: 10px;
 `;
 
+const SimpleInfo = styled.div`
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+`;
+
+const FooterContainer = styled.div`
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+`;
+
 function AboutUser() {
     const location = useLocation();
     const id = location.state.id;
@@ -31,9 +46,12 @@ function AboutUser() {
                     <SearchBar />
                 </InputContainer>
             </HeaderContainer>
-            <h1>유저 상세페이지</h1>
-            <UserInfo accessId={id}></UserInfo>
-            <UserTopLevel accessId={id}></UserTopLevel>
+            <SimpleInfo>
+                <UserInfo accessId={id}></UserInfo>
+                <UserTopLevel accessId={id}></UserTopLevel>
+            </SimpleInfo>
+            <RecentMatch accessId={id}></RecentMatch>
+            <FooterContainer><Footer /></FooterContainer>
         </>
     );
 }

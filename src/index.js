@@ -4,11 +4,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './modules/UserContext';
+import { MatchProvider } from './modules/MatchContext';
 
 ReactDOM.render(
   <BrowserRouter>
     <UserProvider>
-      <App />
+      <MatchProvider>
+        <App />
+      </MatchProvider>
     </UserProvider>
   </BrowserRouter>,
   document.getElementById('root')
