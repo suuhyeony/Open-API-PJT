@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { getUser, getUserId, useUserDispatch, useUserState } from '../modules/UserContext';
+import { getUser, useUserDispatch, useUserState } from '../modules/UserContext';
 import SearchPreview from './SearchPreview';
 import { MdSearch } from 'react-icons/md';
+import { debounce } from '../modules/debounce';
 
 
 const Input = styled.input`
@@ -34,36 +35,38 @@ const InputContainer = styled.div`
 
 function SearchBar() {
     const [text, setText] = useState('');
-    const state = useUserState();
-    const dispatch = useUserDispatch();
+    const userState = useUserState();
+    const userDispatch = useUserDispatch();
     const history = useHistory();
     
-    const { data: user } = state.user;
+    const { data: user } = userState.user;
 
-    const onChange = async (e) => {
-        await setText(e.target.value);
-        getUser(dispatch, e.target.value);
+    const onChange = (e) => {
+        setText(e.target.value);
+        debounce(getUser(userDispatch, e.target.value), 800);
     };
 
     const handleSearch = (e) => {
         if (e.key === 'Enter' || e.type === 'click') {
-            // getUserId(dispatch, user.accessId);
-            // console.log(state);
-            history.push({
-                pathname: '/about_user',
-                state: {id: user.accessId}
-            });
-            setText('');
+            if (!user) alert('존재하지 않는 유저입니다.')
+            else {
+                history.push({
+                    pathname: '/about_user',
+                    state: {id: user.accessId}
+                });
+                setText('');
+            }
         };
     }
     // console.log(state);
+
     return (
         <>
             <InputContainer>
                 <Input type='text' placeholder='구단주명을 입력해주세요.' value={text} onChange={onChange} autoFocus onKeyUp={handleSearch} />
                 <Button onClick={handleSearch}><MdSearch /></Button>
             </InputContainer>
-            {text ? <SearchPreview></SearchPreview> : null}
+            {text ? <SearchPreview /> : null}
         </>
     );
 }
