@@ -39,26 +39,14 @@ export async function getUserTopLevel(accessid) {
 }
 
 // id로 최근 매치기록 조회
-export async function getRecentMatch(accessid, matchtype, offset) {
+export async function getRecentMatch(accessid, matchtype, offset, limit) {
     const response = await axios.get(
-        `https://api.nexon.co.kr/fifaonline4/v1.0/users/${accessid}/matches?matchtype=${matchtype}&offset=${offset}&limit=10`
+        `https://api.nexon.co.kr/fifaonline4/v1.0/users/${accessid}/matches?matchtype=${matchtype}&offset=${offset}&limit=${limit}`
         , {headers:{
             "Authorization": API_KEY
         }}
     );
 
-    // if (response.data.length !== 0) {
-    //     console.log(1)
-    //     return response.data.map(async (matchid) => {
-    //         const res = await axios.get(
-    //             `https://api.nexon.co.kr/fifaonline4/v1.0/matches/${matchid}`
-    //             , {headers:{
-    //                 "Authorization": API_KEY
-    //             }}).data
-    //         return res
-    //     })
-    // }
-    // console.log(response)
     return response.data;
 }
 
