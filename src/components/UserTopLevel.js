@@ -9,23 +9,24 @@ const UserTopContainer = styled.div`
     /* background-color: #5B5C5D; */
     border: 1px solid gray;
     border-radius: 20px;
-    box-shadow: box-shadow: 0 0 10px 2px rgba(218, 218, 218, 0.3);
+    box-shadow: 0 0 10px 2px rgba(218, 218, 218, 0.3);
     box-sizing: border-box;
-`;
-
-const Icon = styled.div`
-    font-size: 40px;
-    color: #c2c3c5;
-    padding: 8px;
-    margin-left: 5px;
-    margin-right: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 `;
 
 const Contents = styled.div`
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    
+    justify-content: space-evenly;
+    align-items: center;
+    /* padding: 20px; */
+`;
+
+const Icon = styled.div`
+    font-size: 50px;
+    color: #c2c3c5;
+    padding: 8px;
 `;
 
 const Text = styled.div`
@@ -101,14 +102,26 @@ function UserTopLevel({ accessId }) {
     const { data: top } = userState.top;
     // console.log(top);
 
-    if (Array.isArray(top) && top.length === 0) return <UserTopContainer><Icon><AiOutlineTrophy /></Icon><p>아직 최고등급을 달성하지 못했어요ㅠ</p></UserTopContainer>;
-    // console.log(top);
+    if (Array.isArray(top) && top.length === 0) 
     return (
         <UserTopContainer>
             <Contents>
                 <Icon><AiOutlineTrophy /></Icon>
                 <Text>
-                    {top && top.map(match => (<p>{match.division}</p>))}
+                    <p>공식경기 최고등급</p>
+                    <p>최고등급 미달성</p>
+                </Text>
+            </Contents>
+        </UserTopContainer>);
+    // console.log(top);
+
+    return (
+        <UserTopContainer>
+            <Contents>
+                <Icon><AiOutlineTrophy /></Icon>
+                <Text>
+                    <p>공식경기 최고등급</p>
+                    {top && <p>{divisionNameList.filter(dvName => dvName.divisionId===top.filter(t=>t.matchType===50)[0].division)[0].divisionName}</p>}
                 </Text>
             </Contents>
         </UserTopContainer>
