@@ -1,7 +1,6 @@
 import React from 'react';
 import fifa_logo from '../img/fifa_logo.JPG';
 import SearchBar from '../components/SearchBar';
-import Footer from '../components/Footer';
 import styled from 'styled-components';
 
 
@@ -21,14 +20,6 @@ const SearchContainer = styled.div`
     padding: 30px;
 `;
 
-const FooterContainer = styled.div`
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 10px 0;
-    text-align: center;
-`;
-
 function Home() {
     return (
         <>
@@ -36,7 +27,6 @@ function Home() {
             <SearchContainer>
                 <SearchBar />
             </SearchContainer>
-            <FooterContainer><Footer /></FooterContainer>
         </>
     );
 }

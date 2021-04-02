@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Text = styled.div`
-    display: flex;
-    justify-content: space-between;
+    width: 300px;
+    margin: 0 auto;
+    font-size: 13px;
 `;
 
 function Footer() {
     return (
         <Text>
-            <button>FIFA 공식홈</button>
             <p>Data based on NEXON DEVELOPERS</p>
             <p>made by suuhyeony</p>
         </Text>
