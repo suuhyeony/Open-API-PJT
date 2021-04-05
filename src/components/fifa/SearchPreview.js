@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getUser, useUserDispatch, useUserState } from '../modules/UserContext';
+import { getUser, useUserDispatch, useUserState } from '../../modules/fifa/UserContext';
 
 const PreviewContainer = styled.div`
     width: 500px;

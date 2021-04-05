@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { getUser, useUserDispatch, useUserState } from '../modules/UserContext';
+import { getUser, useUserDispatch, useUserState } from '../../modules/fifa/UserContext';
 import SearchPreview from './SearchPreview';
 import { MdSearch } from 'react-icons/md';
-import { debounce } from '../modules/debounce';
+import { debounce } from '../../modules/fifa/debounce';
 
 
 const Input = styled.input`

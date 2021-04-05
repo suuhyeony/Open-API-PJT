@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useUserDispatch, useUserState, getUserTop } from '../modules/UserContext';
+import { useUserDispatch, useUserState, getUserTop } from '../../modules/fifa/UserContext';
 import { AiOutlineTrophy } from 'react-icons/ai';
 
 const UserTopContainer = styled.div`

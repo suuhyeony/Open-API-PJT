@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { UserProvider } from './modules/UserContext';
-import { MatchProvider } from './modules/MatchContext';
+import { UserProvider } from './modules/fifa/UserContext';
+import { MatchProvider } from './modules/fifa/MatchContext';
 
 ReactDOM.render(
   <BrowserRouter>

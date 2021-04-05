@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useUserDispatch, useUserState, getUserId } from '../modules/UserContext';
+import { useUserDispatch, useUserState, getUserId } from '../../modules/fifa/UserContext';
 import { CgProfile } from 'react-icons/cg';
 
 const UserInfoContainer = styled.div`

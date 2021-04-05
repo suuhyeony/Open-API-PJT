@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getMatches, useMatchDispatch, useMatchState } from '../modules/MatchContext';
+import { getMatches, useMatchDispatch, useMatchState } from '../../modules/fifa/MatchContext';
+import { useUserState } from '../../modules/fifa/UserContext';
 import MatchTableRow from './MatchTableRow';
 
 
@@ -72,9 +73,11 @@ function RecentMatch({ accessId }) {
     const [matchType, setMatchType] = useState(50);
     const [count, setCount] = useState(10);
     const matchState = useMatchState();
+    const userState = useUserState();
     const matchDispatch = useMatchDispatch();
 
     const { data: matches} = matchState.matches;
+    const { data: user } = userState.user;
 
     const typeChange = async (e) => {
         await setMatchType(parseInt(e.target.value));
@@ -96,7 +99,7 @@ function RecentMatch({ accessId }) {
     useEffect(() => {
         setCount(0);
         getMatches(matchDispatch, accessId, matchType, count, 10);
-    }, [matchType]);
+    }, [matchType, user]);
 
     console.log(matchType, matches, 'm');
     

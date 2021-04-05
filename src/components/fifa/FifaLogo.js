@@ -1,23 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import fifa_logo from '../img/fifa_logo.JPG';
+import { Link } from 'react-router-dom';
 
 
 const LogoImg = styled.img`
     width: 200px;
     display: inline;
-    margin-top: 10px;
-    margin-left: 20px;
-    padding: 10px;
     cursor: pointer;
 `;
 
-function Logo() {
+function FifaLogo() {
     return (
         <div>
-            <LogoImg src={fifa_logo}></LogoImg>
+            <Link to='/'><LogoImg src='/fifa/fifa_logo.JPG'></LogoImg></Link>
         </div>
     );
 }
 
-export default Logo;
+export default FifaLogo;

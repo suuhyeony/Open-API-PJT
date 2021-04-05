@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getMatchDetail } from '../modules/api';
+import { getMatchDetail } from '../../modules/fifa/api';
 import styled from 'styled-components';
 import MatchDetail from './MatchDetail';
 import { AiFillSkin } from 'react-icons/ai';

@@ -11,7 +11,7 @@ function Footer() {
     return (
         <Text>
             <p>Data based on NEXON DEVELOPERS</p>
-            <p>made by suuhyeony</p>
+            {/* <p>Made by suuhyeony</p> */}
         </Text>
     );
 }
