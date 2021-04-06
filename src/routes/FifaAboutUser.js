@@ -12,6 +12,7 @@ function FifaAboutUser() {
     const location = useLocation();
     const user = location.state.user;
 
+
     if (!user) return <SimpleInfo>해당 구단주님이 없네요!</SimpleInfo>;
     return (
         <>
@@ -51,6 +52,7 @@ const InputContainer = styled.div`
     width: 250px;
     margin-top: 10px;
     margin-right: 20px;
+    /* margin: 0 auto; */
     padding: 10px;
 `;
 
@@ -59,4 +61,5 @@ const SimpleInfo = styled.div`
     justify-content: space-around;
     padding: 30px;
     margin-bottom: 20px;
+    z-index: 1;
 `;

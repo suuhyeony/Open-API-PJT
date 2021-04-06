@@ -22,9 +22,10 @@ function SearchBar() {
             try {
                 setPreview(await getUserId(e.target.value));
             } catch (error) {
+                setPreview(null);
                 console.log(error);
             }
-        }, 500);
+        }, 300);
         setTimer(newTimer);
     };
     
@@ -46,7 +47,7 @@ function SearchBar() {
                 <Input type='text' placeholder='구단주명을 입력해주세요.' value={text} onChange={onChange} autoFocus onKeyUp={handleSearch} />
                 <Button onClick={handleSearch}><MdSearch /></Button>
             </InputContainer>
-            {text ? <SearchPreview preview={preview} /> : null}
+            {text ? <SearchPreview preview={preview} handleSearch={handleSearch} /> : null}
         </>
     );
 }
