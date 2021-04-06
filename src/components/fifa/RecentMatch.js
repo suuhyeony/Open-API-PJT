@@ -1,40 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getMatches, useMatchDispatch, useMatchState } from '../../modules/fifa/MatchContext';
+import { getRecentMatch } from '../../modules/fifa/api';
 import MatchTableRow from './MatchTableRow';
 
 
 function RecentMatch({ user }) {
     const [matchType, setMatchType] = useState(50);
+    const [matches, setMatches] = useState(null);
     const [count, setCount] = useState(10);
-    const matchState = useMatchState();
-    const matchDispatch = useMatchDispatch();
-
-    const { data: matches} = matchState.matches;
 
     const typeChange = async (e) => {
         await setMatchType(parseInt(e.target.value));
-        // getMatches(matchDispatch, accessId, e.target.value, 0);
     };
 
-    const PrevSearch = () => {
+    const PrevSearch = async() => {
         setCount(count - 10);
         console.log(count);
-        getMatches(matchDispatch, user.accessId, matchType, count, 10);
+        setMatches(await getRecentMatch(user.accessId, matchType, count, 10));
     } 
 
-    const NextSearch = () => {
+    const NextSearch = async() => {
         setCount(count + 10);
         console.log(count);
-        getMatches(matchDispatch, user.accessId, matchType, count, 10);
+        setMatches(await getRecentMatch(user.accessId, matchType, count, 10));
     }
 
-    useEffect(() => {
+    useEffect(async() => {
         setCount(0);
-        getMatches(matchDispatch, user.accessId, matchType, count, 10);
+        setMatches(await getRecentMatch(user.accessId, matchType, count, 10));
     }, [matchType, user]);
 
-    // console.log(matchType, matches, 'm');
+    console.log(matchType, matches, 'm');
     
     return (
         <RecentMatchContainer>

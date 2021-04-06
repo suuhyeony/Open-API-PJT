@@ -6,13 +6,6 @@ import { AiFillSkin } from 'react-icons/ai';
 import { GiSoccerBall } from 'react-icons/gi';
 import PlayerDetail from './PlayerDetail';
 
-const Content = styled.tr`
-    /* cursor: pointer; */
-`;
-
-const Cell = styled.td`
-    /* cursor: pointer; */
-`;
 
 function MatchTableRow({ matchid, accessId }) {
     const [match, setMatch] = useState(null);
@@ -29,13 +22,13 @@ function MatchTableRow({ matchid, accessId }) {
         setMatchModal(true);
     };
 
-    const openPlayerModal = () => {
-        setPlayerModal(true);
-    };
-
     const closeMatchModal = () => {
         // console.log('닫기');
         setMatchModal(false);
+    };
+
+    const openPlayerModal = () => {
+        setPlayerModal(true);
     };
 
     const closePlayerModal = () => {
@@ -71,3 +64,12 @@ function MatchTableRow({ matchid, accessId }) {
 }
 
 export default MatchTableRow;
+
+
+const Content = styled.tr`
+    /* cursor: pointer; */
+`;
+
+const Cell = styled.td`
+    /* cursor: pointer; */
+`;

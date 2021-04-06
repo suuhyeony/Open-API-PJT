@@ -3,16 +3,11 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { UserProvider } from './modules/fifa/UserContext';
-import { MatchProvider } from './modules/fifa/MatchContext';
+
 
 ReactDOM.render(
   <BrowserRouter>
-    <UserProvider>
-      <MatchProvider>
-        <App />
-      </MatchProvider>
-    </UserProvider>
+    <App />
   </BrowserRouter>,
   document.getElementById('root')
 );
