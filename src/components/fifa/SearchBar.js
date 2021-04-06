@@ -1,10 +1,57 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { getUser, useUserDispatch, useUserState } from '../../modules/fifa/UserContext';
 import SearchPreview from './SearchPreview';
 import { MdSearch } from 'react-icons/md';
-import { debounce } from '../../modules/fifa/debounce';
+import { getUserId } from '../../modules/fifa/api';
+
+
+function SearchBar() {
+    const [text, setText] = useState('');
+    const [timer, setTimer] = useState(0);
+    const [preview, setPreview] = useState(null);
+    const history = useHistory();
+    
+    const onChange = async (e) => {
+        await setText(e.target.value);
+        // checkUsername(e.target.value)
+        if (timer) {
+            clearTimeout(timer);
+        }
+        const newTimer = setTimeout(async () => {
+            try {
+                setPreview(await getUserId(e.target.value));
+            } catch (error) {
+                console.log(error);
+            }
+        }, 500);
+        setTimer(newTimer);
+    };
+    
+    const handleSearch = async (e) => {
+        if (e.key === 'Enter' || e.type === 'click') {
+            await getUserId(text);
+            history.push({
+                pathname: '/fifa_about_user',
+                state: {user: preview}
+            });
+            setText('');
+        };
+    }
+
+
+    return (
+        <>
+            <InputContainer>
+                <Input type='text' placeholder='구단주명을 입력해주세요.' value={text} onChange={onChange} autoFocus onKeyUp={handleSearch} />
+                <Button onClick={handleSearch}><MdSearch /></Button>
+            </InputContainer>
+            {text ? <SearchPreview preview={preview} /> : null}
+        </>
+    );
+}
+
+export default SearchBar;
 
 
 const Input = styled.input`
@@ -32,43 +79,3 @@ const InputContainer = styled.div`
     justify-content: space-around;
     border-bottom: 2px solid #dee2e6;
 `;
-
-function SearchBar() {
-    const [text, setText] = useState('');
-    const userState = useUserState();
-    const userDispatch = useUserDispatch();
-    const history = useHistory();
-    
-    const { data: user } = userState.user;
-
-    const onChange = (e) => {
-        setText(e.target.value);
-        debounce(getUser(userDispatch, e.target.value), 800);
-    };
-
-    const handleSearch = (e) => {
-        if (e.key === 'Enter' || e.type === 'click') {
-            if (!user) alert('존재하지 않는 유저입니다.')
-            else {
-                history.push({
-                    pathname: '/about_user',
-                    state: {id: user.accessId}
-                });
-                setText('');
-            }
-        };
-    }
-    // console.log(state);
-
-    return (
-        <>
-            <InputContainer>
-                <Input type='text' placeholder='구단주명을 입력해주세요.' value={text} onChange={onChange} autoFocus onKeyUp={handleSearch} />
-                <Button onClick={handleSearch}><MdSearch /></Button>
-            </InputContainer>
-            {text ? <SearchPreview /> : null}
-        </>
-    );
-}
-
-export default SearchBar;

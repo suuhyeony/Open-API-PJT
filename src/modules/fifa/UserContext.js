@@ -3,14 +3,11 @@ import * as api from './api';
 import { createAsyncDispatcher, createAsyncHandler, initialAsyncState } from './asyncActionUtils';
 
 const initialState = {
-    user: initialAsyncState,
-    id: initialAsyncState,
-    top: initialAsyncState
+    user: initialAsyncState
 };
 
 const userHandler = createAsyncHandler('GET_USER', 'user');
-const idHandler = createAsyncHandler('GET_USER_ID', 'id');
-const topHandler = createAsyncHandler('GET_USER_TOP', 'top');
+
 
 function userReducer(state, action) {
     switch (action.type) {
@@ -18,14 +15,6 @@ function userReducer(state, action) {
         case 'GET_USER_SUCCESS':
         case 'GET_USER_ERROR':
             return userHandler(state, action);
-        case 'GET_USER_ID':
-        case 'GET_USER_ID_SUCCESS':
-        case 'GET_USER_ID_ERROR':
-            return idHandler(state, action);
-        case 'GET_USER_TOP':
-        case 'GET_USER_TOP_SUCCESS':
-        case 'GET_USER_TOP_ERROR':
-            return topHandler(state, action);
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -65,5 +54,3 @@ export function useUserDispatch() {
 }
 
 export const getUser = createAsyncDispatcher('GET_USER', api.getUserId);
-export const getUserId = createAsyncDispatcher('GET_USER_ID', api.getUserInfo);
-export const getUserTop = createAsyncDispatcher('GET_USER_TOP', api.getUserTopLevel);

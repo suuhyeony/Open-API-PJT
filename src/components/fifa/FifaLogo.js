@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 
 const LogoImg = styled.img`
-    width: 200px;
+    width: 190px;
+    height: 45px;
     display: inline;
     cursor: pointer;
 `;

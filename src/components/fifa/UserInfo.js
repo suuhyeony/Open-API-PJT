@@ -1,7 +1,25 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useUserDispatch, useUserState, getUserId } from '../../modules/fifa/UserContext';
 import { CgProfile } from 'react-icons/cg';
+
+
+function UserInfo({ user }) {
+
+    return (
+        <UserInfoContainer>
+            <Contents>
+                <Profile><CgProfile /></Profile>
+                <Text>
+                    {user && <p style={{fontSize: '20px', marginBottom: '0px'}}>Lv.{user.level}</p>}
+                    {user && <p style={{marginTop: '1px'}}><b>"{user.nickname}"</b> 구단주님</p>}
+                </Text>
+            </Contents>
+        </UserInfoContainer>
+    );
+}
+
+export default UserInfo;
+
 
 const UserInfoContainer = styled.div`
     width: 350px;
@@ -34,31 +52,3 @@ const Profile = styled.div`
 const Text = styled.div`
     padding: 10px;
 `;
-
-function UserInfo({ accessId }) {
-    const userState = useUserState();
-    const userDispatch = useUserDispatch();
-    // console.log(accessId);
-
-    useEffect(() => {
-        getUserId(userDispatch, accessId);
-        // console.log('hey');
-    }, [accessId]);
-
-    const { data: id } = userState.id;
-    // console.log(id);
-
-    return (
-        <UserInfoContainer>
-            <Contents>
-                <Profile><CgProfile /></Profile>
-                <Text>
-                    {id && <p style={{fontSize: '20px', marginBottom: '0px'}}>Lv.{id.level}</p>}
-                    {id && <p style={{marginTop: '1px'}}><b>"{id.nickname}"</b> 구단주님</p>}
-                </Text>
-            </Contents>
-        </UserInfoContainer>
-    );
-}
-
-export default UserInfo;

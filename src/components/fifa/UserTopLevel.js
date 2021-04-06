@@ -1,7 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useUserDispatch, useUserState, getUserTop } from '../../modules/fifa/UserContext';
 import { AiOutlineTrophy } from 'react-icons/ai';
+import { getUserTopLevel } from '../../modules/fifa/api';
+
+
+function UserTopLevel({ user }) {
+    const [top, setTop] = useState(null);
+    
+    useEffect(async () => {
+        setTop(await getUserTopLevel(user.accessId));
+    }, [user.accessId]);
+    
+    if (!top) return <p>로딩중...</p>;
+    if (Array.isArray(top) && top.length === 0) 
+    return (
+        <UserTopContainer>
+            <Contents>
+                <Icon><AiOutlineTrophy /></Icon>
+                <Text>
+                    <p>공식경기 최고등급</p>
+                    <p>최고등급 미달성</p>
+                </Text>
+            </Contents>
+        </UserTopContainer>);
+    // console.log(top);
+    
+    return (
+        <UserTopContainer>
+            <Contents>
+                <Icon><AiOutlineTrophy /></Icon>
+                <Text>
+                    <p>공식경기 최고등급</p>
+                    {top && <p>{divisionNameList.filter(dvName => dvName.divisionId===top.filter(t=>t.matchType===50)[0].division)[0].divisionName}</p>}
+                </Text>
+            </Contents>
+        </UserTopContainer>
+    );
+}
+
+export default UserTopLevel;
+
 
 const UserTopContainer = styled.div`
     width: 350px;
@@ -90,42 +128,3 @@ const divisionNameList = [
         "divisionName": "유망주3"
     }
 ]
-
-function UserTopLevel({ accessId }) {
-    const userState = useUserState();
-    const userDispatch = useUserDispatch();
-
-    useEffect(() => {
-        getUserTop(userDispatch, accessId);
-    }, [accessId]);
-
-    const { data: top } = userState.top;
-    // console.log(top);
-
-    if (Array.isArray(top) && top.length === 0) 
-    return (
-        <UserTopContainer>
-            <Contents>
-                <Icon><AiOutlineTrophy /></Icon>
-                <Text>
-                    <p>공식경기 최고등급</p>
-                    <p>최고등급 미달성</p>
-                </Text>
-            </Contents>
-        </UserTopContainer>);
-    // console.log(top);
-
-    return (
-        <UserTopContainer>
-            <Contents>
-                <Icon><AiOutlineTrophy /></Icon>
-                <Text>
-                    <p>공식경기 최고등급</p>
-                    {top && <p>{divisionNameList.filter(dvName => dvName.divisionId===top.filter(t=>t.matchType===50)[0].division)[0].divisionName}</p>}
-                </Text>
-            </Contents>
-        </UserTopContainer>
-    );
-}
-
-export default UserTopLevel;
