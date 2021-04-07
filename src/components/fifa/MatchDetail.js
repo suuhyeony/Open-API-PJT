@@ -2,75 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const DarkBackground = styled.div`
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.8);
-    color: black;
-`;
-
-const DialogBlock = styled.div`
-  width: 500px;
-  padding: 1.5rem;
-  background: white;
-  border-radius: 2px;
-  h3 {
-    margin: 0;
-    font-size: 1.5rem;
-  }
-  p {
-    font-size: 1rem;
-  }
-`;
-
-const Header = styled.div`
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #344252;
-    padding: 10px;
-`;
-
-const Button = styled.button`
-    background-color: #344252;
-    border-radius: 3px;
-    padding: 5px;
-    color: white;
-    cursor: pointer;
-`;
-
-const Table = styled.table`
-    width: 100%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    text-align: center;
-    border-bottom: 2px solid black;
-    th, td {
-        border: 1px solid white;
-        border-bottom: 1px solid black;
-        margin: 5px;
-        padding: 8px;
-    }
-
-    tr td:nth-child(1) {
-        width: 35%;
-    }
-
-    tr td:nth-child(2) {
-        background-color: lavender;
-        width: 30%;
-    }
-
-    tr td:nth-child(3) {
-        width: 35%;
-    }
-`;
-
 function MatchDetail({ visible, onClose, match }) {
     if (!visible) return null;
     return (
@@ -149,3 +80,81 @@ function MatchDetail({ visible, onClose, match }) {
 }
 
 export default MatchDetail;
+
+
+const DarkBackground = styled.div`
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: black;
+`;
+
+const DialogBlock = styled.div`
+    width: 500px;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 2px;
+    h3 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+    p {
+        font-size: 1rem;
+    }
+`;
+
+const Header = styled.div`
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #344252;
+    padding: 10px;
+`;
+
+const Button = styled.button`
+    border: none;
+    outline: none;
+    background-color: #505e6d;
+    border-radius: 3px;
+    padding: 8px;
+    color: white;
+    cursor: pointer;
+    &:hover {
+        background-color: #3f4b58;
+    }
+    &:active {
+        background-color: #171f29;
+    }
+`;
+
+const Table = styled.table`
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center;
+    border-bottom: 2px solid black;
+    th, td {
+        border: 1px solid white;
+        border-bottom: 1px solid black;
+        margin: 5px;
+        padding: 8px;
+    }
+
+    tr td:nth-child(1) {
+        width: 35%;
+    }
+
+    tr td:nth-child(2) {
+        background-color: lavender;
+        width: 30%;
+    }
+
+    tr td:nth-child(3) {
+        width: 35%;
+    }
+`;

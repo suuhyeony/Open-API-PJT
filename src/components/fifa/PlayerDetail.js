@@ -1,9 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
+import fifa_spid from '../../metadata/fifa_spid.json';
 
 
-function PlayerDetail({ visible, onClose, accessId, match }) {
+function PlayerDetail({ visible, onClose, match }) {
     if (!visible) return null;
+
+    const playerList = match.matchInfo[0].player.map(p => {
+        p.nickname = fifa_spid.filter((sp) => p.spId === sp.id)[0].name;
+        return p
+    });
+
+    playerList.sort((a, b) => {
+        if (b.status.spRating > a.status.spRating) return 1
+        if (b.status.spRating === a.status.spRating) return 0
+        if (b.status.spRating < a.status.spRating) return -1
+    });
+    
+    console.log(playerList)
+
     return (
         <DarkBackground>
             <DialogBlock>
@@ -11,8 +26,34 @@ function PlayerDetail({ visible, onClose, accessId, match }) {
                     <h3>선수 상세정보</h3>
                     <Button onClick={onClose}>닫기</Button>
                 </Header>
-                <p>경기일자 : {match.matchDate}</p>
-                
+                {/* <p>경기일자 : {match.matchDate}</p> */}
+                <Table>
+                    <tr>
+                        <th>선수정보</th>
+                        <th>평점</th>
+                        <th>득점</th>
+                        <th>도움</th>
+                        <th>유효슛</th>
+                        <th>일반슈팅</th>
+                        <th>패스 성공률</th>
+                        <th>드리블 성공률</th>
+                        <th>태클 성공률</th>
+                        <th>차단 성공률</th>
+                    </tr>
+                    {playerList.map(player => (
+                        <tr>
+                            <td>{player.nickname}</td>
+                            <td>{player.status.spRating}</td>
+                            <td>{player.status.goal}</td>
+                            <td>{player.status.assist}</td>
+                            <td>{player.status.effectiveShoot}</td>
+                            <td>{player.status.shoot}</td>
+                            <td>{player.status.passTry === 0 ? 0 : parseInt((player.status.passSuccess/player.status.passTry)*100)}</td>
+                            <td>{player.status.dribbleTry === 0 ? 0 : parseInt((player.status.dribbleSuccess/player.status.dribbleTry)*100)}</td>
+                            <td>{player.status.tackleTry === 0 ? 0 : parseInt((player.status.tackle/player.status.tackleTry)*100)}</td>
+                            <td>{player.status.blockTry === 0 ? 0 : parseInt((player.status.block/player.status.blockTry)*100)}</td>
+                        </tr>))}
+                </Table>
             </DialogBlock>
         </DarkBackground>
     );
@@ -20,6 +61,16 @@ function PlayerDetail({ visible, onClose, accessId, match }) {
 
 export default PlayerDetail;
 
+
+const Table = styled.table`
+    width: 100%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center;
+    th, td {
+        font-size: 0.9rem;
+    }
+`;
 
 const DarkBackground = styled.div`
     position: fixed;
@@ -35,7 +86,7 @@ const DarkBackground = styled.div`
 `;
 
 const DialogBlock = styled.div`
-    width: 500px;
+    width: 800px;
     padding: 1.5rem;
     background: white;
     border-radius: 2px;
@@ -51,14 +102,22 @@ const DialogBlock = styled.div`
 const Header = styled.div`
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #344252;
+    /* border-bottom: 1px solid #344252; */
     padding: 10px;
 `;
 
 const Button = styled.button`
-    background-color: #344252;
+border: none;
+    outline: none;
+    background-color: #505e6d;
     border-radius: 3px;
-    padding: 5px;
+    padding: 8px;
     color: white;
     cursor: pointer;
+    &:hover {
+        background-color: #3f4b58;
+    }
+    &:active {
+        background-color: #171f29;
+    }
 `;

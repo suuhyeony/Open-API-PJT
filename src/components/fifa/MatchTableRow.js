@@ -57,8 +57,8 @@ function MatchTableRow({ matchid, accessId }) {
                 <Cell onClick={openMatchModal} style={{cursor: 'pointer'}}><GiSoccerBall /></Cell>
                 <Cell onClick={openPlayerModal} style={{cursor: 'pointer'}}><AiFillSkin /></Cell>
             </Content>
-                <MatchDetail visible={matchModal} onClose={closeMatchModal} accessId={accessId} match={match} />
-                <PlayerDetail visible={playerModal} onClose={closePlayerModal} accessId={accessId} match={match} />
+                <MatchDetail visible={matchModal} onClose={closeMatchModal} match={match} />
+                <PlayerDetail visible={playerModal} onClose={closePlayerModal} match={match} />
         </>
     );
 }

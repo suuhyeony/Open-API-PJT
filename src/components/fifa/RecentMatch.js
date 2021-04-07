@@ -2,27 +2,32 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getRecentMatch } from '../../modules/fifa/api';
 import MatchTableRow from './MatchTableRow';
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 
 function RecentMatch({ user }) {
     const [matchType, setMatchType] = useState(50);
     const [matches, setMatches] = useState(null);
-    const [count, setCount] = useState(10);
+    const [count, setCount] = useState(0);
 
     const typeChange = async (e) => {
         await setMatchType(parseInt(e.target.value));
     };
 
     const PrevSearch = async() => {
-        setCount(count - 10);
-        console.log(count);
-        setMatches(await getRecentMatch(user.accessId, matchType, count, 10));
+        if (count === 0) {
+            alert('이전 경기가 없습니다!');
+        } else {
+            setMatches(await getRecentMatch(user.accessId, matchType, count-10, 10));
+            await setCount(count - 10);
+            // console.log(count);
+        }
     } 
 
     const NextSearch = async() => {
-        setCount(count + 10);
-        console.log(count);
-        setMatches(await getRecentMatch(user.accessId, matchType, count, 10));
+        setMatches(await getRecentMatch(user.accessId, matchType, count+10, 10));
+        await setCount(count + 10);
+        // console.log(count);
     }
 
     useEffect(async() => {
@@ -30,15 +35,15 @@ function RecentMatch({ user }) {
         setMatches(await getRecentMatch(user.accessId, matchType, count, 10));
     }, [matchType, user]);
 
-    console.log(matchType, matches, 'm');
+    // console.log(matchType, matches, 'm');
     
     return (
         <RecentMatchContainer>
             <Title>
-                <h3 style={{marginRight: '10px'}}>최근 경기</h3>
-                <select name="matchtype" id="dropDown" value={matchType} onChange={typeChange}>
+                <h2 style={{marginRight: '10px'}}>최근 경기</h2>
+                <Select name="matchtype" id="dropDown" value={matchType} onChange={typeChange}>
                     {matchTypeList.map(type => (<option key={type.matchtype} value={type.matchtype}>{type.desc}</option>))}
-                </select>
+                </Select>
             </Title>
             <Table>
                 <thead>
@@ -56,8 +61,8 @@ function RecentMatch({ user }) {
                     {matches && matches.map(matchid => (<MatchTableRow key={matchid} matchid={matchid} accessId={user.accessId} />))}
                 </tbody>
                 <ButtonContainer>
-                    {count>0 && <button onClick={PrevSearch}>이전</button>}
-                    <button onClick={NextSearch}>다음</button>
+                    <PrevButton onClick={PrevSearch}><IoIosArrowBack /></PrevButton>
+                    <NextButton onClick={NextSearch}><IoIosArrowForward /></NextButton>
                 </ButtonContainer>
             </Table>
         </RecentMatchContainer>
@@ -98,6 +103,30 @@ const matchTypeList = [
     }
 ]
 
+const PrevButton = styled.button`
+    border: none;
+    outline: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 2rem;
+    position: relative;
+    left: -600px;
+    top: -250px;
+`;
+
+const NextButton = styled.button`
+    border: none;
+    outline: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 2rem;
+    position: relative;
+    right: -600px;
+    top: -250px;
+`;
+
 const RecentMatchContainer = styled.div`
     margin: 0 auto;
     padding: 10px;
@@ -107,6 +136,11 @@ const Title = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+`;
+
+const Select = styled.select`
+    border-radius: 3px;
+    padding: 3px;
 `;
 
 const Table = styled.table`
