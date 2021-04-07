@@ -13,7 +13,7 @@ function FifaHome() {
             <Container>
                 <LogoHome src='/fifa/fifa_logo.JPG'></LogoHome>
                 <SearchContainer>
-                    <SearchBar />
+                    <SearchBar isHome={true} />
                 </SearchContainer>
             </Container>
         </>

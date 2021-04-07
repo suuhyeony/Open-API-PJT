@@ -6,7 +6,7 @@ import { MdSearch } from 'react-icons/md';
 import { getUserId } from '../../modules/fifa/api';
 
 
-function SearchBar() {
+function SearchBar({ isHome }) {
     const [text, setText] = useState('');
     const [timer, setTimer] = useState(0);
     const [preview, setPreview] = useState(null);
@@ -42,22 +42,25 @@ function SearchBar() {
 
 
     return (
-        <>
+        <Box style={isHome ? {width: '500px'} : {width: '237.8px'}}>
             <InputContainer>
                 <Input type='text' placeholder='구단주명을 입력해주세요.' value={text} onChange={onChange} autoFocus onKeyUp={handleSearch} />
                 <Button onClick={handleSearch}><MdSearch /></Button>
             </InputContainer>
-            {text ? <SearchPreview preview={preview} handleSearch={handleSearch} /> : null}
-        </>
+            {text ? <SearchPreview preview={preview} handleSearch={handleSearch} isHome={isHome} /> : null}
+        </Box>
     );
 }
 
 export default SearchBar;
 
+const Box = styled.div`
+    position: absolute;
+`;
 
 const Input = styled.input`
-    padding: 12px;
     width: 100%;
+    padding: 12px;
     outline: none;
     border: none;
     font-size: 15px;

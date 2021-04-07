@@ -20,7 +20,7 @@ function FifaAboutUser() {
             <Container>
                 <HeaderContainer>
                     <InputContainer>
-                        <SearchBar />
+                        <SearchBar isHome={false} />
                     </InputContainer>
                 </HeaderContainer>
                 <SimpleInfo>
@@ -39,20 +39,17 @@ export default FifaAboutUser;
 const Container = styled.div`
     width: 80%;
     margin: 0 auto;
-    /* padding: 10px; */
 `;
 
 const HeaderContainer = styled.div`
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 `;
 
 const InputContainer = styled.div`
     width: 250px;
-    margin-top: 10px;
     margin-right: 20px;
-    /* margin: 0 auto; */
     padding: 10px;
 `;
 
@@ -60,6 +57,7 @@ const SimpleInfo = styled.div`
     display: flex;
     justify-content: space-around;
     padding: 30px;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     z-index: 1;
 `;
