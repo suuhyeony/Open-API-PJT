@@ -38,7 +38,7 @@ export async function getUserTopLevel(accessid) {
     return response.data;
 }
 
-// id로 최근 매치기록 조회
+// id, matchtype으로 최근 매치기록(matchid) 조회
 export async function getRecentMatch(accessid, matchtype, offset, limit) {
     const response = await axios.get(
         `https://api.nexon.co.kr/fifaonline4/v1.0/users/${accessid}/matches?matchtype=${matchtype}&offset=${offset}&limit=${limit}`
@@ -59,5 +59,16 @@ export async function getMatchDetail(matchid) {
         }}
     );
     // console.log(response.data)
+    return response.data;
+}
+
+// pid(선수 식별자)로 선수 이미지 조회
+export async function getPlayerImg(pid) {
+    const response = await axios.get(
+        `https://fo4.dn.nexoncdn.co.kr/live/externalAssets/common/players/p${pid}.png`
+        , {headers:{
+            "Authorization": API_KEY
+        }}
+    );
     return response.data;
 }
