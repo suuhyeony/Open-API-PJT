@@ -48,7 +48,7 @@ function KartHome() {
         <Subtitle>라이더명을 입력하세요!</Subtitle>
         <Searchbar />
       </Header>   
-      <Footer />
+    <Footer />
     </Container>
     
     </div>

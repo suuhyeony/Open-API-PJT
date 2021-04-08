@@ -18,7 +18,7 @@ useEffect(async () => {
     <div>
       {!mId=='' && 
         <div>
-          {console.log(match)}모달!
+          {/* {console.log(match)}모달! */}
         </div>
         }
     </div>

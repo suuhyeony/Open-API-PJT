@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Text = styled.div`
-    position: absolute;   
+    position: relative;   
     bottom: 10px; 
     font-size: 13px;
     padding: 5px;
