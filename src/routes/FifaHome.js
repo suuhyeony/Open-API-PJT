@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from '../components/fifa/SearchBar';
 import styled from 'styled-components';
 import TabMenu from '../components/TabMenu';
+import Footer from '../components/Footer';
 
 
 function FifaHome() {
@@ -16,12 +17,20 @@ function FifaHome() {
                     <SearchBar isHome={true} />
                 </SearchContainer>
             </Container>
+            <FooterContainer><Footer /></FooterContainer>
         </>
     );
 }
 
 export default FifaHome;
 
+const FooterContainer = styled.div`
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 100px;
+    text-align: center;
+    color: #ffffff;
+`;
 
 const Container = styled.div`
     margin-top: 100px;

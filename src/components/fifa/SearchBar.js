@@ -10,6 +10,7 @@ function SearchBar({ isHome }) {
     const [text, setText] = useState('');
     const [timer, setTimer] = useState(0);
     const [preview, setPreview] = useState(null);
+    const [isKey, setIsKey] = useState(false);
     const history = useHistory();
     
     const onChange = async (e) => {
@@ -37,6 +38,11 @@ function SearchBar({ isHome }) {
                 state: {user: preview}
             });
             setText('');
+            setIsKey(false);
+        };
+        if (e.keyCode === 40) {
+            setIsKey(true);
+            
         };
     }
 
@@ -47,7 +53,7 @@ function SearchBar({ isHome }) {
                 <Input type='text' placeholder='구단주명을 입력해주세요.' value={text} onChange={onChange} autoFocus onKeyUp={handleSearch} />
                 <Button onClick={handleSearch}><MdSearch /></Button>
             </InputContainer>
-            {text ? <SearchPreview preview={preview} handleSearch={handleSearch} isHome={isHome} /> : null}
+            {text ? <SearchPreview preview={preview} handleSearch={handleSearch} isHome={isHome} isKey={isKey} /> : null}
         </Box>
     );
 }
