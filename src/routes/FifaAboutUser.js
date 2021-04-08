@@ -6,6 +6,7 @@ import UserInfo from '../components/fifa/UserInfo';
 import UserTopLevel from '../components/fifa/UserTopLevel';
 import RecentMatch from '../components/fifa/RecentMatch';
 import TabMenu from '../components/TabMenu';
+import Footer from '../components/Footer';
 
 
 function FifaAboutUser() {
@@ -29,12 +30,21 @@ function FifaAboutUser() {
                 </SimpleInfo>
                 <RecentMatch user={user}></RecentMatch>
             </Container>
+            <FooterContainer><Footer /></FooterContainer>
         </>
     );
 }
 
 export default FifaAboutUser;
 
+
+const FooterContainer = styled.div`
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 100px;
+    text-align: center;
+    color: #ffffff;
+`;
 
 const Container = styled.div`
     width: 80%;
@@ -57,7 +67,7 @@ const SimpleInfo = styled.div`
     display: flex;
     justify-content: space-around;
     padding: 30px;
-    margin-top: 20px;
+    /* margin-top: 30px; */
     margin-bottom: 10px;
     z-index: 1;
 `;

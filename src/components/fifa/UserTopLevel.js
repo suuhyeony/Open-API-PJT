@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { AiOutlineTrophy } from 'react-icons/ai';
 import { getUserTopLevel } from '../../modules/fifa/api';
+import { Avatar } from '@material-ui/core'
 
 
 function UserTopLevel({ user }) {
@@ -16,10 +17,10 @@ function UserTopLevel({ user }) {
     return (
         <UserTopContainer>
             <Contents>
-                <Icon><AiOutlineTrophy /></Icon>
+                <Avatar><AiOutlineTrophy /></Avatar>
                 <Text>
-                    <p>공식경기 최고등급</p>
-                    <p>최고등급 미달성</p>
+                    <p style={{marginBottom: '0px', fontSize: '13px'}}><b>역대 최고등급</b></p>
+                    <p style={{marginTop: '1px'}}>"최고등급 미달성"</p>
                 </Text>
             </Contents>
         </UserTopContainer>);
@@ -28,10 +29,13 @@ function UserTopLevel({ user }) {
     return (
         <UserTopContainer>
             <Contents>
-                <Icon><AiOutlineTrophy /></Icon>
+                <Avatar><AiOutlineTrophy style={{color:'black'}} /></Avatar>
                 <Text>
-                    <p>공식경기 최고등급</p>
-                    {top && <p>{divisionNameList.filter(dvName => dvName.divisionId===top.filter(t=>t.matchType===50)[0].division)[0].divisionName}</p>}
+                    <p style={{marginBottom: '0px', fontSize: '13px'}}><b>역대 최고등급</b></p>
+                    {top && 
+                    <p style={{marginTop: '1px'}}>
+                        <b>"{divisionNameList.filter(dvName => dvName.divisionId === top[0].division)[0].divisionName}"</b>
+                    </p>}
                 </Text>
             </Contents>
         </UserTopContainer>
@@ -46,11 +50,12 @@ const UserTopContainer = styled.div`
     height: 130px;
     /* background-color: #5B5C5D; */
     border: 1px solid gray;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 0 10px 2px rgba(218, 218, 218, 0.3);
     box-sizing: border-box;
     display: flex;
     justify-content: space-evenly;
+    margin-top: 20px;
     align-items: center;
 `;
 
@@ -58,13 +63,6 @@ const Contents = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    /* padding: 20px; */
-`;
-
-const Icon = styled.div`
-    font-size: 50px;
-    color: #c2c3c5;
-    padding: 8px;
 `;
 
 const Text = styled.div`

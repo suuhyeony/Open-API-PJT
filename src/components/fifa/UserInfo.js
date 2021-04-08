@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CgProfile } from 'react-icons/cg';
+import { Avatar } from '@material-ui/core'
 
 
 function UserInfo({ user }) {
@@ -8,7 +9,7 @@ function UserInfo({ user }) {
     return (
         <UserInfoContainer>
             <Contents>
-                <Profile><CgProfile /></Profile>
+                <Avatar><CgProfile style={{color:'black'}} /></Avatar>
                 <Text>
                     {user && <p style={{fontSize: '20px', marginBottom: '0px'}}>Lv.{user.level}</p>}
                     {user && <p style={{marginTop: '1px'}}><b>"{user.nickname}"</b> 구단주님</p>}
@@ -26,12 +27,13 @@ const UserInfoContainer = styled.div`
     height: 130px;
     /* background-color: #5B5C5D; */
     border: 1px solid gray;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 0 10px 2px rgba(218, 218, 218, 0.3);
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 `;
 
 const Contents = styled.div`
