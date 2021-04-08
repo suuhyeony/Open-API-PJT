@@ -35,7 +35,7 @@ function PlayerDetail({ visible, onClose, match }) {
 
     return (
         <>
-            <DarkBackground>
+            <DarkBackground style={{zIndex: '2'}}>
                 <DialogBlock>
                     <Header>
                         <h3>선수 분석정보</h3>
@@ -82,22 +82,33 @@ export default PlayerDetail;
 const Table = styled.table`
     width: 100%;
     margin: 0 auto;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 2px 2px;
     text-align: center;
-    th {
+    /* border: 1px solid black; */
+    th, tr {
         font-size: 0.8rem;
         font-weight: 2000;
-        border-bottom: 2px solid black;
+        /* border: 1px solid black; */
     }
-    td {
-        font-size: 0.9rem;
+    th {
+        padding: 6px;
     }
-    tr::nth-child(1) {
-        border-bottom: 2px solid black;
+    tr:nth-child(1) {
+        border-bottom: 2px solid #bebebe;
+        background-color: #080625;
+    }
+    td:nth-child(2n+1) {
+        background-color: #2a2c3a;
     }
     tr:nth-child(n+2):hover {
         cursor: pointer;
-        background-color: #d4d3d3;
+        opacity: 0.7;
+    }
+    td {
+        padding: 8px;
+        font-size: 0.8rem;
+        /* border: 1px solid black; */
     }
     
 `;
@@ -118,14 +129,15 @@ const DarkBackground = styled.div`
 const DialogBlock = styled.div`
     width: 800px;
     padding: 1.5rem;
-    background: white;
+    background: #1b1c2b;
+    color: #ebe8e8;
     border-radius: 2px;
     h3 {
         margin: 0;
         font-size: 1.5rem;
     }
     p {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 `;
 
@@ -139,15 +151,15 @@ const Header = styled.div`
 const Button = styled.button`
 border: none;
     outline: none;
-    background-color: #505e6d;
+    background-color: #35356b;
     border-radius: 3px;
     padding: 8px;
     color: white;
     cursor: pointer;
     &:hover {
-        background-color: #3f4b58;
+        background-color: #1c4d81;
     }
     &:active {
-        background-color: #171f29;
+        background-color: #11478a;
     }
 `;

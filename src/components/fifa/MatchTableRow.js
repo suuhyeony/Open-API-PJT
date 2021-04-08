@@ -45,18 +45,18 @@ function MatchTableRow({ matchid, accessId }) {
     
     return (
         <>
-            <Content>
-                <Cell>{match.matchDate}</Cell>
-                <Cell>{(!match.matchInfo[0].matchDetail.matchEndType && match.matchInfo[0].matchDetail.matchResult) ||
+            <MainTr>
+                <MainTd>{match.matchDate}</MainTd>
+                <MainTd>{(!match.matchInfo[0].matchDetail.matchEndType && match.matchInfo[0].matchDetail.matchResult) ||
                     (match.matchInfo[0].matchDetail.matchEndType === 1 && '몰수승') ||
                     (match.matchInfo[0].matchDetail.matchEndType === 2 && '몰수패')
-                }</Cell>
-                <Cell>{match.matchInfo[0].shoot.goalTotal} : {match.matchInfo[1].shoot.goalTotal}</Cell>
-                <Cell>{match.matchInfo[1].nickname}</Cell>
-                <Cell>{Math.round(parseFloat(match.matchInfo[0].matchDetail.averageRating)*100)/100}</Cell>
-                <Cell onClick={openMatchModal} style={{cursor: 'pointer'}}><GiSoccerBall /></Cell>
-                <Cell onClick={openPlayerModal} style={{cursor: 'pointer'}}><AiFillSkin /></Cell>
-            </Content>
+                }</MainTd>
+                <MainTd>{match.matchInfo[0].shoot.goalTotal} : {match.matchInfo[1].shoot.goalTotal}</MainTd>
+                <MainTd>{match.matchInfo[1].nickname}</MainTd>
+                <MainTd>{Math.round(parseFloat(match.matchInfo[0].matchDetail.averageRating)*100)/100}</MainTd>
+                <MainTd onClick={openMatchModal} style={{cursor: 'pointer'}}><GiSoccerBall style={{ fontSize: '20px' }} /></MainTd>
+                <MainTd onClick={openPlayerModal} style={{cursor: 'pointer'}}><AiFillSkin style={{ fontSize: '20px' }} /></MainTd>
+            </MainTr>
                 <MatchDetail visible={matchModal} onClose={closeMatchModal} match={match} />
                 <PlayerDetail visible={playerModal} onClose={closePlayerModal} match={match} />
         </>
@@ -66,10 +66,18 @@ function MatchTableRow({ matchid, accessId }) {
 export default MatchTableRow;
 
 
-const Content = styled.tr`
-    /* cursor: pointer; */
+const MainTr = styled.tr`
+    color: #ebe8e8;
+    :nth-child(2n+1) {
+        background-color: #131212;
+    }
+    &:hover {
+        opacity: 0.7;
+    }
+    opacity: 1;  
 `;
 
-const Cell = styled.td`
-    /* cursor: pointer; */
+const MainTd = styled.td`
+    border: none;
+    padding: 10px;
 `;

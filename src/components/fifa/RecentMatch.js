@@ -48,13 +48,13 @@ function RecentMatch({ user }) {
             <Table>
                 <thead>
                     <tr>
-                        <th>경기날짜</th>
-                        <th>결과</th>
-                        <th>스코어</th>
-                        <th>상대팀</th>
-                        <th>경기 평점</th>
-                        <th>기록 보기</th>
-                        <th>선수 보기</th>
+                        <MainTh>경기날짜</MainTh>
+                        <MainTh>결과</MainTh>
+                        <MainTh>스코어</MainTh>
+                        <MainTh>상대팀</MainTh>
+                        <MainTh>경기 평점</MainTh>
+                        <MainTh>기록 보기</MainTh>
+                        <MainTh>선수 보기</MainTh>
                     </tr>
                 </thead>
                 <tbody>
@@ -140,7 +140,13 @@ const Title = styled.div`
 
 const Select = styled.select`
     border-radius: 3px;
+    height:30px;
     padding: 3px;
+    color: #ebe8e8;
+    background-color: #1d1e1f;
+    &:hover {
+        background-color: #2b2d30;
+    }
 `;
 
 const Table = styled.table`
@@ -148,10 +154,12 @@ const Table = styled.table`
     margin: 0 auto;
     border-collapse: collapse;
     text-align: center;
-    th, td {
-        border: 1px solid gray;
-        padding: 5px;
-    }
+    border: none;
+`;
+
+const MainTh = styled.th`
+    border: none;
+    padding: 10px;
 `;
 
 const ButtonContainer = styled.div`

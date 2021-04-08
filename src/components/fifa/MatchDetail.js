@@ -5,7 +5,7 @@ import styled from 'styled-components';
 function MatchDetail({ visible, onClose, match }) {
     if (!visible) return null;
     return (
-        <DarkBackground>
+        <DarkBackground style={{zIndex: '2'}}>
             <DialogBlock>
                 <Header>
                     <h3>경기 상세정보</h3>
@@ -98,8 +98,9 @@ const DarkBackground = styled.div`
 const DialogBlock = styled.div`
     width: 500px;
     padding: 1.5rem;
-    background: white;
-    border-radius: 2px;
+    background: #1b1c2b;
+    color: #f0f0f0;
+    border-radius: 5px;
     h3 {
         margin: 0;
         font-size: 1.5rem;
@@ -112,35 +113,33 @@ const DialogBlock = styled.div`
 const Header = styled.div`
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #344252;
+    border-bottom: 1px solid #50565e;
     padding: 10px;
 `;
 
 const Button = styled.button`
     border: none;
     outline: none;
-    background-color: #505e6d;
+    background-color: #35356b;
     border-radius: 3px;
     padding: 8px;
     color: white;
     cursor: pointer;
     &:hover {
-        background-color: #3f4b58;
+        background-color: #1c4d81;
     }
     &:active {
-        background-color: #171f29;
+        background-color: #11478a;
     }
 `;
 
 const Table = styled.table`
     width: 100%;
     margin: 0 auto;
-    border-collapse: collapse;
     text-align: center;
-    border-bottom: 2px solid black;
+    border-spacing: 10px 5px;
+    border-collapse: separate;
     th, td {
-        border: 1px solid white;
-        border-bottom: 1px solid black;
         margin: 5px;
         padding: 8px;
     }
@@ -150,11 +149,15 @@ const Table = styled.table`
     }
 
     tr td:nth-child(2) {
-        background-color: lavender;
+        background-color: #0d0d2b;
         width: 30%;
     }
 
     tr td:nth-child(3) {
         width: 35%;
+    }
+    
+    td:nth-child(2n+1) {
+        background-color: #30303f;
     }
 `;

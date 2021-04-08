@@ -49,6 +49,7 @@ const FooterContainer = styled.div`
 const Container = styled.div`
     width: 80%;
     margin: 0 auto;
+    color: #e9e6e6;
 `;
 
 const HeaderContainer = styled.div`
