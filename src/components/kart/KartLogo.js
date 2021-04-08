@@ -13,7 +13,7 @@ const LogoImg = styled.img`
 function KartLogo() {
     return (
         <div>
-            <Link to='/kart'><LogoImg src='/kart/kart_logo.png'></LogoImg></Link>
+            <Link to='/kart/'><LogoImg src='/kart/kart_logo.png'></LogoImg></Link>
         </div>
     );
 }

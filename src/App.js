@@ -4,8 +4,8 @@ import { createGlobalStyle } from 'styled-components';
 import FifaAboutUser from './routes/FifaAboutUser';
 import FifaHome from './routes/FifaHome';
 import styled from 'styled-components';
-// import Footer from './components/Footer';
 import KartHome from './routes/KartHome';
+import KartAboutUser from './routes/KartAboutUser'
 
 
 function App() {
@@ -14,7 +14,8 @@ function App() {
       <GlobalStyle />
       <Route path='/' exact={true} component={FifaHome} />
       <Route path='/fifa_about_user' component={FifaAboutUser} />
-      <Route path='/kart' exact={true} component={KartHome} />
+      <Route path='/kart/' exact={true} component={KartHome} />
+      <Route path='/kart/:usrName' component={KartAboutUser} />
     </>
   );
 }
@@ -29,11 +30,3 @@ const GlobalStyle = createGlobalStyle`
     color: #ffffff;
   }
 `;
-
-// const FooterContainer = styled.div`
-//   width: 100%;
-//   padding: 10px 0;
-//   margin-top: 100px;
-//   text-align: center;
-//   color: #ffffff;
-// `;

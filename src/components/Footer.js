@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Text = styled.div`
-    width: 300px;
-    margin: 0 auto;
+    position: absolute;   
+    bottom: 10px; 
     font-size: 13px;
+    padding: 5px;
 `;
 
 function Footer() {
