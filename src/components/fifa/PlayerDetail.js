@@ -38,7 +38,7 @@ function PlayerDetail({ visible, onClose, match }) {
             <DarkBackground>
                 <DialogBlock>
                     <Header>
-                        <h3>선수 상세정보</h3>
+                        <h3>선수 분석정보</h3>
                         <Button onClick={onClose}>닫기</Button>
                     </Header>
                     {/* <p>경기일자 : {match.matchDate}</p> */}
@@ -56,8 +56,8 @@ function PlayerDetail({ visible, onClose, match }) {
                             <th>차단 성공률(%)</th>
                         </tr>
                         {playerList.map(player => (
-                            <tr>
-                                <td onClick={openInfoModal.bind(this, player)}>{player.nickname}</td>
+                            <tr onClick={openInfoModal.bind(this, player)}>
+                                <td>{player.nickname}</td>
                                 <td>{player.status.spRating}</td>
                                 <td>{player.status.goal}</td>
                                 <td>{player.status.assist}</td>
@@ -92,9 +92,12 @@ const Table = styled.table`
     td {
         font-size: 0.9rem;
     }
-    td:nth-child(1):hover {
+    tr::nth-child(1) {
+        border-bottom: 2px solid black;
+    }
+    tr:nth-child(n+2):hover {
         cursor: pointer;
-        background-color: #d5f19d;
+        background-color: #d4d3d3;
     }
     
 `;

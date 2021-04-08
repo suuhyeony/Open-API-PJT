@@ -6,19 +6,32 @@ import fifa_position from '../../metadata/fifa_position.json';
 function PlayerInfo({ onClose, visible, curPlayer }) {
     if (!visible) return null;
 
-    const seasonId = String(curPlayer.spId).slice(0, 3);
-    const pId = String(curPlayer.spId).slice(3);
+    const seasonId = Number(String(curPlayer.spId).slice(0, 3));
+    const pId = Number(String(curPlayer.spId).slice(3));
 
-    console.log(curPlayer)
+    // console.log(curPlayer)
+    // console.log(seasonId, pId)
     return (
         <DarkBackground>
             <DialogBlock>
                 <Header>
-                    <h2>선수 정보</h2>
+                    <h3>선수 정보</h3>
                     <Button onClick={onClose}>닫기</Button>
                 </Header>
-                {curPlayer.nickname}
-                {fifa_position.filter(pos => pos.spposition === curPlayer.spPosition)[0].desc}
+                <Player>
+                    <img src={'https://fo4.dn.nexoncdn.co.kr/live/externalAssets/common/players/p'+parseInt(pId)+'.png'} alt={pId} />
+                    <div style={{ padding: '15px'}}>
+                        <div style={{ display: 'flex', marginTop: '10px' }}>
+                            <img src={fifa_class.filter((cls) => cls.seasonId === seasonId)[0].seasonImg} />
+                            <h3 style={{ marginLeft: '10px'}}>{curPlayer.nickname}</h3>
+                        </div>
+                        <div style={{ display: 'flex' }}>
+                            <p>{fifa_class.filter((cls) => cls.seasonId === seasonId)[0].className} |</p>
+                            <p>| <b>{fifa_position.filter(pos => pos.spposition === curPlayer.spPosition)[0].desc}</b></p>
+                        </div>
+                    </div>
+                </Player>
+
             </DialogBlock>
         </DarkBackground>
     );
@@ -26,6 +39,11 @@ function PlayerInfo({ onClose, visible, curPlayer }) {
 
 export default PlayerInfo;
 
+
+const Player = styled.div`
+    display: flex;
+    padding: 10px;
+`;
 
 const Button = styled.button`
     border: none;
@@ -64,7 +82,7 @@ const DarkBackground = styled.div`
 `;
 
 const DialogBlock = styled.div`
-    width: 800px;
+    width: 530px;
     padding: 1.5rem;
     background: white;
     border-radius: 2px;
