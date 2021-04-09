@@ -5,7 +5,6 @@ import { Avatar } from '@material-ui/core'
 
 
 function UserInfo({ user }) {
-
     return (
         <UserInfoContainer>
             <Contents>

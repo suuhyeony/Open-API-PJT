@@ -12,7 +12,7 @@ function UserTopLevel({ user }) {
         setTop(await getUserTopLevel(user.accessId));
     }, [user.accessId]);
     
-    if (!top) return <p>로딩중...</p>;
+    if (!top) return <></>;
     if (Array.isArray(top) && top.length === 0) 
     return (
         <UserTopContainer>

@@ -39,9 +39,9 @@ function MatchDetail({ visible, onClose, match }) {
                         <td>{match.matchInfo[1].shoot.shootTotal === 0 ? 0 : parseInt((match.matchInfo[1].shoot.goalTotal/match.matchInfo[1].shoot.shootTotal)*100)}</td>
                     </tr>
                     <tr>
-                        <td>{match.matchInfo[0].pass.passSuccess}</td>
+                        <td>{match.matchInfo[0].pass.passTry === 0 ? 0 : parseInt((match.matchInfo[0].pass.passSuccess/match.matchInfo[0].pass.passTry)*100)}</td>
                         <td>패스 성공률(%)</td>
-                        <td>{match.matchInfo[1].pass.passSuccess}</td>
+                        <td>{match.matchInfo[1].pass.passTry === 0 ? 0 : parseInt((match.matchInfo[1].pass.passSuccess/match.matchInfo[1].pass.passTry)*100)}</td>
                     </tr>
                     <tr>
                         <td>{match.matchInfo[0].matchDetail.cornerKick}</td>

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { getRecentMatch } from '../../modules/fifa/api';
 import MatchTableRow from './MatchTableRow';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
+// import { CircularProgress } from '@material-ui/core';
 
 
 function RecentMatch({ user }) {
@@ -18,6 +19,7 @@ function RecentMatch({ user }) {
         if (count === 0) {
             alert('이전 경기가 없습니다!');
         } else {
+            
             setMatches(await getRecentMatch(user.accessId, matchType, count-10, 10));
             await setCount(count - 10);
             // console.log(count);
@@ -36,15 +38,18 @@ function RecentMatch({ user }) {
     }, [matchType, user]);
 
     // console.log(matchType, matches, 'm');
-    
     return (
         <RecentMatchContainer>
             <Title>
-                <h2 style={{marginRight: '10px'}}>최근 경기</h2>
+                <h2 style={{marginRight: '20px', marginLeft: '70px'}}>최근 경기</h2>
                 <Select name="matchtype" id="dropDown" value={matchType} onChange={typeChange}>
                     {matchTypeList.map(type => (<option key={type.matchtype} value={type.matchtype}>{type.desc}</option>))}
                 </Select>
             </Title>
+            {(!matches||!matches.length) ? 
+            <div style={{height:'60px'}}>
+                <p style={{textAlign:'center', marginTop: '100px'}}>매치 기록이 없습니다</p>
+            </div> :
             <Table>
                 <thead>
                     <tr>
@@ -59,12 +64,13 @@ function RecentMatch({ user }) {
                 </thead>
                 <tbody>
                     {matches && matches.map(matchid => (<MatchTableRow key={matchid} matchid={matchid} accessId={user.accessId} />))}
-                </tbody>
+                </tbody>    
                 <ButtonContainer>
                     <PrevButton onClick={PrevSearch}><IoIosArrowBack /></PrevButton>
                     <NextButton onClick={NextSearch}><IoIosArrowForward /></NextButton>
                 </ButtonContainer>
-            </Table>
+            </Table>}
+            {(!matches||!matches.length) ? <></> : <p style={{textAlign:'center', marginTop:'30px'}}>{parseInt((count+10)/10)} page</p>}   
         </RecentMatchContainer>
     );
 }
