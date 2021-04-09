@@ -15,7 +15,7 @@ function MatchTableRow({ matchid, accessId }) {
 
     useEffect(() => {
         getMatchDetail(matchid).then((res) => setMatch(res));
-    }, []);
+    }, [matchid]);
     // console.log('row', match);
 
     const openMatchModal = () => {
@@ -40,6 +40,7 @@ function MatchTableRow({ matchid, accessId }) {
     match.matchInfo.sort((a,b) => {
         if (a.accessId===accessId) return -1
         if (b.accessId===accessId) return 1
+        return 0
     })
     // console.log(match.matchInfo)
     

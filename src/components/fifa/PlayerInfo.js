@@ -19,10 +19,10 @@ function PlayerInfo({ onClose, visible, curPlayer }) {
                     <Button onClick={onClose}>닫기</Button>
                 </Header>
                 <Player>
-                    <img src={'https://fo4.dn.nexoncdn.co.kr/live/externalAssets/common/players/p'+parseInt(pId)+'.png'} alt={pId} />
+                    <img src={'https://fo4.dn.nexoncdn.co.kr/live/externalAssets/common/players/p'+parseInt(pId)+'.png'} alt='' />
                     <div style={{ padding: '15px'}}>
                         <div style={{ display: 'flex', marginTop: '10px' }}>
-                            <img src={fifa_class.filter((cls) => cls.seasonId === seasonId)[0].seasonImg} />
+                            <img src={fifa_class.filter((cls) => cls.seasonId === seasonId)[0].seasonImg} alt=''/>
                             <h3 style={{ marginLeft: '10px'}}>{curPlayer.nickname}</h3>
                         </div>
                         <div style={{ display: 'flex' }}>

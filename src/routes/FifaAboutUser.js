@@ -25,10 +25,10 @@ function FifaAboutUser() {
                     </InputContainer>
                 </HeaderContainer>
                 <SimpleInfo>
-                    <UserInfo user={user}></UserInfo>
-                    <UserTopLevel user={user}></UserTopLevel>
+                    <UserInfo user={user} />
+                    <UserTopLevel user={user} />
                 </SimpleInfo>
-                <RecentMatch user={user}></RecentMatch>
+                <RecentMatch user={user} />
             </Container>
             <FooterContainer><Footer /></FooterContainer>
         </>

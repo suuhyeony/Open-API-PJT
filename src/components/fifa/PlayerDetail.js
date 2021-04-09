@@ -29,6 +29,7 @@ function PlayerDetail({ visible, onClose, match }) {
         if (b.status.spRating > a.status.spRating) return 1
         if (b.status.spRating === a.status.spRating) return 0
         if (b.status.spRating < a.status.spRating) return -1
+        return 0
     });
 
     // console.log(playerList)

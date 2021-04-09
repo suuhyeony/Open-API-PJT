@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import FifaAboutUser from './routes/FifaAboutUser';
 import FifaHome from './routes/FifaHome';
-import styled from 'styled-components';
 import KartHome from './routes/KartHome';
 import KartAboutUser from './routes/KartAboutUser'
 

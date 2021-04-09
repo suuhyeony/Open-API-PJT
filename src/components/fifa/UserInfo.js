@@ -42,14 +42,6 @@ const Contents = styled.div`
     /* padding: 10px; */
 `;
 
-const Profile = styled.div`
-    font-size: 60px;
-    color: #c2c3c5;
-    padding: 8px;
-    margin-left: 5px;
-    margin-right: 20px;
-`;
-
 const Text = styled.div`
     padding: 10px;
 `;

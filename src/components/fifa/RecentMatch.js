@@ -15,29 +15,29 @@ function RecentMatch({ user }) {
         await setMatchType(parseInt(e.target.value));
     };
 
-    const PrevSearch = async() => {
+    const update = async (num) => {
+        setMatches(await getRecentMatch(user.accessId, matchType, count+num, 10))
+    }
+
+    const PrevSearch = () => {
         if (count === 0) {
             alert('이전 경기가 없습니다!');
         } else {
-            
-            setMatches(await getRecentMatch(user.accessId, matchType, count-10, 10));
-            await setCount(count - 10);
-            // console.log(count);
+            update(-10)
+            setCount(count - 10);
         }
     } 
 
-    const NextSearch = async() => {
-        setMatches(await getRecentMatch(user.accessId, matchType, count+10, 10));
-        await setCount(count + 10);
-        // console.log(count);
+    const NextSearch = () => {
+        update(10);
+        setCount(count + 10);
     }
 
-    useEffect(async() => {
+    useEffect(() => {
         setCount(0);
-        setMatches(await getRecentMatch(user.accessId, matchType, count, 10));
+        update(0);
     }, [matchType, user]);
 
-    // console.log(matchType, matches, 'm');
     return (
         <RecentMatchContainer>
             <Title>
