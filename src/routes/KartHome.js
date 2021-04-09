@@ -33,10 +33,7 @@ const Title = styled.h1`
   border-radius: 13px;
   }
 `;
-const Subtitle = styled.h3`
-  margin-top:7vh;
-  font-size: 20px;
-`;
+
 function KartHome() {
     return(
     <div style={{margin :0}}>
@@ -45,7 +42,6 @@ function KartHome() {
       <Header>
         <Logo />
         <Title>KartRider 전적검색</Title>
-        <Subtitle>라이더명을 입력하세요!</Subtitle>
         <Searchbar />
       </Header>   
     <Footer />

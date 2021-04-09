@@ -5,7 +5,7 @@ import track from "../../metadata/track.json"
 import kart from "../../metadata/kart.json"
 import character from "../../metadata/character.json"
 import moment from 'moment';
-import MatchTableRow from '../kart/MatchTableRow'
+import MatchDetail from './MatchDetail'
 
 const Info = styled.div`
   display:flex;
@@ -18,6 +18,7 @@ const Info = styled.div`
   border: 3px solid #ccc;
   margin-bottom: 50px;
   border-radius: 2px;
+  white-space:nowrap;
 `
 const Date = styled.div`
   flex-basis: 100px;
@@ -37,14 +38,14 @@ const MatchInfo = styled.div`
 
 const TypeTitle = styled.div`
   line-height:80px;
-  font-size:20px;
+  font-size:18px;
   font-weight:700;
 `;
 
 const Speed = styled.div`
   position:absolute;
-  top: 5px;
-  right: 0px;
+  top: 7px;
+  left: 25%;
   border-radius:5px;
   padding:3px;
   font-weight:500;
@@ -54,17 +55,32 @@ const Speed = styled.div`
 `;
 
 const SubTitle = styled.div`
+  position:relative;
   flex-basis: 280px;
   text-align:center;
   line-height:100px;
-  font-size:18px;
+  font-size:16px;
   font-weight:600;
 `;
+
+const Tooltip = styled.img`
+  position: absolute;
+  left:0;
+  transform: translate(54%,5%);
+  width: 134px;
+  height: 92px;
+  opacity: 0.1;
+  &:hover{
+    opacity: 1;
+  }
+`
 
 const PInfo = styled.div`
   flex-basis: 90px;
   align-self: center;
   text-align: center;
+  font-size: 14px;
+  font-weight: 600;
   //outline: 1px solid #ccc;
 `
 
@@ -88,6 +104,8 @@ const Ranks = styled.div`
   font-size: 20px;
   font-style: italic;
 `;
+
+
 
 function findMatchType(matchType) {
   for (let i = 0; i < gameType.length; i++) {
@@ -172,7 +190,10 @@ export default ({ posts, loading }) => {
             }
             <TypeTitle>{findMatchType(post.matchType)}</TypeTitle>
           </MatchInfo>
-          <SubTitle><span style={{color: '#ccc', fontWeight: '300'}}>| </span> {findTrackName(post.trackId)} <span style={{color: '#ccc', fontWeight: '300'}}> |</span></SubTitle>
+          <SubTitle>
+            <span style={{color: '#ccc', fontWeight: '300'}}>| </span> {findTrackName(post.trackId)} <span style={{color: '#ccc', fontWeight: '300'}}> |</span>
+            <Tooltip onError={(e) => { e.target.src = "/kart/unknown.png" }} src={'/kart/track/' + post.trackId + '.png'}></Tooltip>
+            </SubTitle>
           <PInfo>
             <div style={{marginBottom: '10px'}}>{findKartName(post.player.kart)}</div>
             <div>{findCharacterName(post.player.character)}</div>
@@ -194,10 +215,12 @@ export default ({ posts, loading }) => {
               </Ranks>
             }
         </Result>
-        <MatchTableRow mId={post.matchId} accessId={posts.nickName}></MatchTableRow>
+            <MatchDetail mId={post.matchId}></MatchDetail>
         </Info>
       ))}
     </>
   );
 };
+
+
 

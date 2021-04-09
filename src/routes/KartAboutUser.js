@@ -65,7 +65,7 @@ export default () => {
         <TabMenu />
         <Subtitle>
         <NickName style={{ color: '#57E7FA' }}>{usrName}</NickName>
-        <Span color={'white'}>님 검색결과(최근 10판)</Span>
+        <Span color={'white'}>님 검색결과(최근 100경기)</Span>
         <Link to={'/kart/'}>
             <HomeButton>홈으로</HomeButton>
         </Link>

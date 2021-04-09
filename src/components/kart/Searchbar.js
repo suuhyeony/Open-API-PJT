@@ -11,6 +11,7 @@ const InputField = styled.input`
     border:2px solid white;
     padding:10px;
     margin:0.8vh;
+    text-align: center;
 `;
 const EnterButton = styled.button`
     font-family:Noto Sans KR;
@@ -47,7 +48,7 @@ export default function Searchbar() {
             value={username}
             onChange={onChangeField}
             onKeyPress={handleKeyPress}
-            placeholder="라이더명 입력"
+            placeholder="라이더명을 입력해주세요."
             ></InputField>
         </div>
         <div>

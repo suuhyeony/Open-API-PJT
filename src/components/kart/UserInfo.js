@@ -3,9 +3,13 @@ import styled from "styled-components";
 import Match from "./Match";
 import { useState, useEffect } from 'react';
 import { getMatch } from "../../modules/kart/api"
+import Toggle from "./Toggle"
+import Pagination from './Pagination'
 
 const Container = styled.div`
   position:relative;
+  display: flex;
+  flex-direction: column;
   margin-top:5%;
 `;
 
@@ -107,22 +111,16 @@ const TypeValue = styled.span`
   color:white;
 `;
 
-const Checkbox = styled.input`
-  position: absolute;
-  left: 48%
+const Checkbox = styled.div`
+  position: relative;
+  left: 45%;
+  transform: translateY(-40px);
 `;
 
-const Changetype = styled.span`
-  position: relative;  
-  left: 43%;
-  top: -20px;
-  width:200px;
-  height:20px;
-`;
+
 
 
 export default ({ usrId, nickname }) => {
-
   
   const [posts, setPosts] = useState([]);
   //console.log(usrId)
@@ -139,15 +137,15 @@ export default ({ usrId, nickname }) => {
   const [loads, setLoads] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
-  const [checked, setChecked] = useState(0);
+  const [value, setValue] = useState(false);
   const handleClick = () => {
-    if (checked === 0) {
+    if (value === false) {
       setCurrentPage(1);
-      setChecked(1);
+      setValue(true);
     }
-    else if (checked === 1) {
+    else if (value === true) {
       setCurrentPage(1);
-      setChecked(0);
+      setValue(false);
     }
   }
 
@@ -168,6 +166,7 @@ export default ({ usrId, nickname }) => {
 
   let speed = [];
   let item = [];
+  
   speed.push('7b9f0fd5377c38514dbb78ebe63ac6c3b81009d5a31dd569d1cff8f005aa881a');
   speed.push('56c651b08836f7c513545e61837ee1ff917d10a8bdbd95a09e5ee5ca2024f157');
   speed.push('b73122a1e6559949df183992491d440f00272ebecf9c415ceec8197abb936432');
@@ -197,6 +196,7 @@ export default ({ usrId, nickname }) => {
   let rank2=0;
   let rank3=0;
 
+  
   if (typeof data !== 'undefined') {
     for (let l in data.matches) {
       for (let m in data.matches[l].matches) {
@@ -231,6 +231,9 @@ export default ({ usrId, nickname }) => {
       }
     }
   }
+  
+  speedArr.sort((a, b) => (Date.parse(a.startTime) < Date.parse(b.startTime)) ? 1 : -1);
+  itemArr.sort((a, b) => (Date.parse(a.startTime) < Date.parse(b.startTime)) ? 1 : -1);
 
   return (
     <>
@@ -266,24 +269,22 @@ export default ({ usrId, nickname }) => {
                 </TypeInfo>
               </InfoDiv>
             </PersonInfo>
-
-            <div>
-              <div position="relative">
-                <Checkbox type="checkbox" onChange={handleClick} checked={checked} />
-                <Changetype>매치타입 전환</Changetype>
-              </div>
-            </div>
-            {checked === 0 && <>
+            <Checkbox>
+              <Toggle isOn={value} onChange={handleClick} onColor="#7e73dd" handleToggle={() => setValue(!value)} />
+            </Checkbox>
+            {value === false && 
+            <>
               <Match key={data.matches[0]?.matches.matchId} posts={currentPosts(speedArr)} loading={loads} />
+              <Pagination postsPerPage={postsPerPage} totalPosts={speedArr.length} paginate={setCurrentPage}></Pagination>
             </>
             }
-            {checked === 1 && <>
+            {value === true && 
+            <>
               <Match key={data.matches[1]?.matches.matchId} posts={currentPosts(itemArr)} loading={loads} />
+              <Pagination postsPerPage={postsPerPage} totalPosts={itemArr.length} paginate={setCurrentPage}></Pagination>
             </>
             }
-            
           </>
-          
         }
       </Container>
     </>
