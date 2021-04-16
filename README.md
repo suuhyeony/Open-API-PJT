@@ -113,19 +113,19 @@
 
 |                           메인화면                           |                        검색 미리보기                         |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![f_main](/uploads/97104b3bb2d21a3e3e551a428e46d98d/f_main.PNG) | ![f_search](/uploads/918a5774729c1cb630faec76d5c9af04/f_search.PNG) |
+| ![image](https://user-images.githubusercontent.com/58247800/114963998-dcbcff00-9ea8-11eb-915c-6d7f68bba280.png) | ![image](https://user-images.githubusercontent.com/58247800/114964029-e3e40d00-9ea8-11eb-8808-26c9d21858b9.png) |
 
 
 
-|                           검색결과                           |                           최근경기                           |
+|                           유저 검색결과                       |                        유저 매치타입별 최근경기                        |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![f_result](/uploads/cb6ce01c881a2e67e9d0abdc113006f1/f_result.PNG) | ![f_table](/uploads/9a5e73247d727a217e3d18922bf8615d/f_table.PNG) |
+| ![image](https://user-images.githubusercontent.com/58247800/114964041-e8a8c100-9ea8-11eb-9968-2d5d08288101.png) | ![image](https://user-images.githubusercontent.com/58247800/114964054-ed6d7500-9ea8-11eb-88dc-1f81ecd54b26.png) |
 
 
 
-|                          경기 상세                           |                          선수 상세                           |                          선수 정보                           |
+|                          경기 상세                           |                          선수 분석                           |                          선수 기본정보                           |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![f_matchd](/uploads/9deb61c70b2e47fd7575f0938285ab30/f_matchd.PNG) | ![f_playerd](/uploads/392bc929c43d19a72af9222849da607d/f_playerd.PNG) | ![f_pinfo](/uploads/785249d8033cf25c675c6f451d4d80f8/f_pinfo.PNG) |
+| ![image](https://user-images.githubusercontent.com/58247800/114964061-f0686580-9ea8-11eb-976a-8d5388fa81a5.png) | ![image](https://user-images.githubusercontent.com/58247800/114964066-f3fbec80-9ea8-11eb-9a13-34333fc9a60f.png) | ![image](https://user-images.githubusercontent.com/58247800/114964079-fc542780-9ea8-11eb-80df-7de0d6a7e5ac.png) |
 
 <br>
 
@@ -133,11 +133,11 @@
 
 | 메인화면                                                     | 유저정보                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![k_main](/uploads/f7eb99c493311362c98bbdca29c12ad9/k_main.png) | ![k_au1](/uploads/f01d6d5ba0609fff0edb68140c0786ff/k_au1.png) |
+| ![image](https://user-images.githubusercontent.com/58247800/114964083-00804500-9ea9-11eb-95cc-0004396f11c5.png) | ![image](https://user-images.githubusercontent.com/58247800/114964089-02e29f00-9ea9-11eb-9234-a58c81562f9a.png) |
 
 
 
-| 최근 경기 기록                                               | 경기 상세 토글                                               |
+| 최근 경기 기록                                               | 경기 상세                                                 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![k_table](/uploads/8862781d1b6881c9182eefcc9f84657c/k_table.PNG) | ![k_au2](/uploads/6b983d96d9f3b0de1349492d0e29d094/k_au2.png) |
+| ![image](https://user-images.githubusercontent.com/58247800/114964096-0544f900-9ea9-11eb-967f-c85bc7141485.png) | ![image](https://user-images.githubusercontent.com/58247800/114964105-07a75300-9ea9-11eb-8736-d3277f9308db.png) |
 
